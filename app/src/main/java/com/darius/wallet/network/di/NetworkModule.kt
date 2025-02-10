@@ -32,8 +32,8 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRecipesRepo(): RecipesRepo =
-        RestfulRecipeRepo(provideApiService())
+    fun provideRecipesRepo(@ApplicationContext appContext: Context): RecipesRepo =
+        RestfulRecipeRepo(provideApiService(), provideRecipeDao(appContext))
 
     @Provides
     @Singleton
