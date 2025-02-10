@@ -3,7 +3,6 @@ package com.darius.wallet.ui.recipes
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.darius.wallet.data.Recipe
-import com.darius.wallet.network.cache.RecipeDao
 import com.darius.wallet.network.repositories.RecipesRepo
 import com.darius.wallet.ui.CoroutineScopeViewModel
 import com.darius.wallet.ui.data.UiState
@@ -18,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
     private val recipesRepo: RecipesRepo,
-    private val recipeDao: RecipeDao,
     dispatcher: CoroutineDispatcher
 ) : CoroutineScopeViewModel(dispatcher) {
 
@@ -26,7 +24,7 @@ class RecipesViewModel @Inject constructor(
     val recipes: StateFlow<UiState> = _recipes
 
     private val customExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Log.e("items", "error")
+        Log.e("ExceptionHandler", "${throwable.message}")
         viewModelScope.launch {
             _recipes.emit(UiState.Error(throwable.message))
         }
@@ -34,24 +32,21 @@ class RecipesViewModel @Inject constructor(
     }
 
     init {
-        launch {
-            _recipes.emit(UiState.Success(recipeDao.getRecipes().map { it.toUiModel() }))
-        }
         fetchRecipes()
     }
 
     private fun fetchRecipes() {
         launch(customExceptionHandler) {
             recipesRepo.getRecipes().collect {
-                it.forEach { recipe ->
-                    recipeDao.insert(recipe)
-                }
+                _recipes.emit(UiState.Success(it.map { recipe ->
+                    recipe.toUiModel()
+                }))
             }
         }
     }
 
     fun retry() {
-        viewModelScope.launch {
+        launch {
             _recipes.emit(UiState.Loading)
         }
         fetchRecipes()
