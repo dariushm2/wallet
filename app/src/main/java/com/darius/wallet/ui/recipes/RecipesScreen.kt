@@ -12,6 +12,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +31,13 @@ fun RecipesScreen(
     navController: NavController,
 ) {
 
-    when (val state = viewModel.recipes.collectAsState().value) {
+    val state = viewModel.recipes.collectAsState().value
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchRecipes()
+    }
+
+    when (state) {
         is UiState.Loading -> {
             Box(
                 contentAlignment = Alignment.Center,
