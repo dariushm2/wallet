@@ -87,3 +87,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+tasks.withType<Test> {
+    testLogging {
+        showStandardStreams = true
+        events("passed", "failed", "skipped")
+    }
+}
