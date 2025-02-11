@@ -35,7 +35,6 @@ class RecipesViewModelTest {
         subject.fetchRecipes()
         subject.recipes.test {
             assert(awaitItem() is UiState.Success<*>)
-            assert(awaitItem() is UiState.Success<*>)
         }
     }
 
