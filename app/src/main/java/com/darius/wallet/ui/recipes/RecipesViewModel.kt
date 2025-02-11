@@ -31,11 +31,7 @@ class RecipesViewModel @Inject constructor(
         throwable.printStackTrace()
     }
 
-    init {
-        fetchRecipes()
-    }
-
-    private fun fetchRecipes() {
+    fun fetchRecipes() {
         launch(customExceptionHandler) {
             recipesRepo.getRecipes().collect {
                 _recipes.emit(UiState.Success(it.map { recipe ->
