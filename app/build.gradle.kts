@@ -57,6 +57,10 @@ android {
     }
 }
 
+firebaseAppDistribution {
+    artifactType = "APK"
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
