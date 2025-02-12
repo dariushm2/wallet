@@ -59,6 +59,7 @@ android {
 
 firebaseAppDistribution {
     artifactType = "APK"
+    appId = "com.darius.wallet.debug"
 }
 
 dependencies {
