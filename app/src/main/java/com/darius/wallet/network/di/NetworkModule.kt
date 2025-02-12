@@ -1,6 +1,7 @@
 package com.darius.wallet.network.di
 
 import android.content.Context
+import com.darius.wallet.BuildConfig
 import com.darius.wallet.network.ApiService
 import com.darius.wallet.network.ConnectivityHandler
 import com.darius.wallet.network.cache.RecipeDataBase
@@ -26,7 +27,7 @@ class NetworkModule {
     fun provideApiService(): ApiService =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://dummyjson.com/")
+            .baseUrl(BuildConfig.BASE_URL)
             .build()
             .create(ApiService::class.java)
 

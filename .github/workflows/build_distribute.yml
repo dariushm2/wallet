@@ -1,0 +1,29 @@
+name: Distribute Build to Firebase
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Decrypt service account key
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > $HOME/serviceAccountKey.json
+          export GOOGLE_APPLICATION_CREDENTIALS="$HOME/serviceAccountKey.json"
+
+      - name: Build and distribute to Firebase
+        run: ./gradlew appDistributionUploadDebug

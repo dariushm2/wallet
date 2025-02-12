@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.googleservices)
+    alias(libs.plugins.appdistribution)
 }
 
 android {
@@ -28,9 +30,11 @@ android {
             isDebuggable = true
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+            buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
         }
         release {
             isMinifyEnabled = true
+            buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -73,6 +77,9 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)

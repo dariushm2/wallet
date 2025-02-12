@@ -18,6 +18,9 @@ hiltNavigationCompose = "1.2.0"
 ksp = "2.0.21-1.0.27"
 room = "2.6.1"
 coroutines = "1.10.1"
+googleservices = "4.4.2"
+appdistribution = "4.0.0"
+firebase-bom = "33.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,6 +53,9 @@ androidx-hilt-navigationCompose = { group = "androidx.hilt", name = "hilt-naviga
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom"}
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -58,4 +64,6 @@ kotlin-kapt = { id = "kotlin-kapt" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
+googleservices = { id = "com.google.gms.google-services" }
+appdistribution = { id = "com.google.firebase.appdistribution" }
 
