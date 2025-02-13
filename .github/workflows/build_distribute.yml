@@ -1,7 +1,7 @@
 name: Distribute Build to Firebase
 
 on:
-  pull_request:
+  push:
     branches:
       - master
 
