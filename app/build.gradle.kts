@@ -27,6 +27,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        named("debug") {
+            storeFile = file("debug.jks")
+        }
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "defaultPassword"
+            keyAlias = "releaseKeyAlias"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "defaultKeyPassword"
+        }
+    }
+
     buildTypes {
         val timestamp = SimpleDateFormat("yyyy-MM-dd").format(Date())
         applicationVariants.all {
@@ -44,6 +56,7 @@ android {
             isDebuggable = true
             applicationIdSuffix = ".debug"
             buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
+            signingConfig = signingConfigs.getByName("debug")
         }
         release {
             isMinifyEnabled = true
