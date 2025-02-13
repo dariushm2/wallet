@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:538863421285:android:5711ea9a18c90e5f9ac38c",
         "android_client_info": {
-          "package_name": "com.darius.wallet.debug"
+          "package_name": "com.darius.wallet"
         }
       },
       "oauth_client": [],

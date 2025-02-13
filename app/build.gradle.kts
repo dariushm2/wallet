@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -25,11 +28,21 @@ android {
     }
 
     buildTypes {
+        val timestamp = SimpleDateFormat("yyyy-MM-dd").format(Date())
+        applicationVariants.all {
+            val variant = this
+            variant.outputs
+                .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+                .forEach { output ->
+                    val outputFileName = "wallet-${variant.versionName}-${variant.baseName}-$timestamp.apk"
+                    println("OutputFileName: $outputFileName")
+                    output.outputFileName = outputFileName
+                }
+        }
         debug {
             isMinifyEnabled = false
             isDebuggable = true
             applicationIdSuffix = ".debug"
-            versionNameSuffix = "-debug"
             buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
         }
         release {
@@ -59,7 +72,7 @@ android {
 
 firebaseAppDistribution {
     artifactType = "APK"
-    appId = "1:538863421285:android:5711ea9a18c90e5f9ac38c"
+    appId = "1:538863421285:android:02c9dc8de898cd939ac38c"
 }
 
 dependencies {
