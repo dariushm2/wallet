@@ -26,4 +26,6 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/serviceAccountKey.json"
 
       - name: Build and distribute to Firebase
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: ./gradlew assembleDebug appDistributionUploadDebug
