@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -6,6 +9,8 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.googleservices)
+    alias(libs.plugins.appdistribution)
 }
 
 android {
@@ -22,15 +27,40 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        named("debug") {
+            storeFile = file("debug.jks")
+        }
+        create("release") {
+            storeFile = file("release.keystore")
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "defaultPassword"
+            keyAlias = "releaseKeyAlias"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "defaultKeyPassword"
+        }
+    }
+
     buildTypes {
+        val timestamp = SimpleDateFormat("yyyy-MM-dd").format(Date())
+        applicationVariants.all {
+            val variant = this
+            variant.outputs
+                .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+                .forEach { output ->
+                    val outputFileName = "wallet-${variant.versionName}-${variant.baseName}-$timestamp.apk"
+                    println("OutputFileName: $outputFileName")
+                    output.outputFileName = outputFileName
+                }
+        }
         debug {
             isMinifyEnabled = false
             isDebuggable = true
             applicationIdSuffix = ".debug"
-            versionNameSuffix = "-debug"
+            buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
+            signingConfig = signingConfigs.getByName("debug")
         }
         release {
             isMinifyEnabled = true
+            buildConfigField("String", "BASE_URL", "\"https://dummyjson.com/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -53,6 +83,11 @@ android {
     }
 }
 
+firebaseAppDistribution {
+    artifactType = "APK"
+    appId = "1:538863421285:android:02c9dc8de898cd939ac38c"
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -73,6 +108,9 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)

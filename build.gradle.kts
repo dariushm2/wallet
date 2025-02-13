@@ -5,4 +5,6 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.googleservices) version libs.versions.googleservices apply false
+    alias(libs.plugins.appdistribution) version libs.versions.appdistribution apply false
 }

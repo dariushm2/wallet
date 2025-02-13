@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "538863421285",
+    "project_id": "wallet-f90c0",
+    "storage_bucket": "wallet-f90c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538863421285:android:5711ea9a18c90e5f9ac38c",
+        "android_client_info": {
+          "package_name": "com.darius.wallet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARrxflJuxz0Nat783QfT6Nqkclrw4G5vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:538863421285:android:02c9dc8de898cd939ac38c",
+        "android_client_info": {
+          "package_name": "com.darius.wallet.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARrxflJuxz0Nat783QfT6Nqkclrw4G5vo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
