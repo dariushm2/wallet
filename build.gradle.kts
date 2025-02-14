@@ -9,14 +9,3 @@ plugins {
     alias(libs.plugins.appdistribution) version libs.versions.appdistribution apply false
     alias(libs.plugins.detekt) version libs.versions.detekt apply false
 }
-
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-    reports {
-        html.required.set(false)
-        xml.required.set(false)
-        txt.required.set(false)
-    }
-    autoCorrect = true
-    config.setFrom("$projectDir/config/detekt.yml")
-    baseline = file("$projectDir/config/baseline.xml")
-}

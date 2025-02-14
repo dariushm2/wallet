@@ -111,6 +111,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
+    detektPlugins(libs.detekt.formatting)
+
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
@@ -130,4 +132,8 @@ tasks.withType<Test> {
         showStandardStreams = true
         events("passed", "failed", "skipped")
     }
+}
+
+detekt {
+    config.setFrom("$rootDir/detekt.yml")
 }
