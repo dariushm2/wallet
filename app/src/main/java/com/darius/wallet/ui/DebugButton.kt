@@ -27,7 +27,7 @@ fun DebugButton(
                         context,
                         Class.forName("com.darius.wallet.DebugActivity"),
                     )
-                    startActivity(context, intent, null)
+                    context.startActivity(intent)
                 }
                 .padding(start = 8.dp)
         )
