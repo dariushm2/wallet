@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.room)
     alias(libs.plugins.googleservices)
     alias(libs.plugins.appdistribution)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -78,9 +79,6 @@ android {
     }
     room {
         schemaDirectory("$projectDir/schemas")
-    }
-    lint {
-        abortOnError = true
     }
 }
 

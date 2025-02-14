@@ -1,7 +1,0 @@
-<lint>
-    <!-- Mark Unused Imports as Errors -->
-    <issue id="UnusedImports" severity="error" />
-
-    <!-- Mark other issues if needed -->
-    <issue id="UnusedResources" severity="error" />
-</lint>

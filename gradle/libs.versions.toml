@@ -21,6 +21,7 @@ coroutines = "1.10.1"
 googleservices = "4.4.2"
 appdistribution = "4.0.0"
 firebase-bom = "33.9.0"
+detekt = "1.23.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -56,6 +57,8 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom"}
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 
+detekt = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt"}
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -65,4 +68,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
 googleservices = { id = "com.google.gms.google-services" }
 appdistribution = { id = "com.google.firebase.appdistribution" }
+detekt = { id = "io.gitlab.arturbosch.detekt" }
 
