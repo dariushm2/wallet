@@ -1,4 +1,3 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -13,6 +12,8 @@ plugins {
     alias(libs.plugins.appdistribution)
     alias(libs.plugins.detekt)
 }
+
+apply(from = file("${rootProject.rootDir}/dependencies/detekt/detekt.gradle"))
 
 android {
     namespace = "com.darius.wallet"
@@ -133,12 +134,4 @@ tasks.withType<Test> {
         showStandardStreams = true
         events("passed", "failed", "skipped")
     }
-}
-
-detekt {
-    config.setFrom("$rootDir/detekt.yml")
-}
-tasks.register<Detekt>("detekt-format") {
-    autoCorrect = true
-    config.setFrom("$rootDir/detekt.yml")
 }
