@@ -19,7 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Composable
 fun TopBar(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val currentBackStackEntry = navController.currentBackStackEntryAsState()
     TopAppBar(

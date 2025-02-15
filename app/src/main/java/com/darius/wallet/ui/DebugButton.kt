@@ -14,7 +14,7 @@ import com.darius.wallet.BuildConfig
 
 @Composable
 fun DebugButton(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     if (BuildConfig.DEBUG) {
@@ -33,4 +33,3 @@ fun DebugButton(
         )
     }
 }
-

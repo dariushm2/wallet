@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 class ConnectivityHandler @Inject constructor(
     context: Context,
 ) {
