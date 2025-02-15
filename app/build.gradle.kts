@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -135,5 +136,9 @@ tasks.withType<Test> {
 }
 
 detekt {
+    config.setFrom("$rootDir/detekt.yml")
+}
+tasks.register<Detekt>("detekt-format") {
+    autoCorrect = true
     config.setFrom("$rootDir/detekt.yml")
 }
