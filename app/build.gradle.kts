@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.room)
     alias(libs.plugins.googleservices)
     alias(libs.plugins.appdistribution)
-    alias(libs.plugins.detekt)
 }
 
 apply(from = file("${rootProject.rootDir}/dependencies/detekt/detekt.gradle"))
