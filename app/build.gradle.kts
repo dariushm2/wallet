@@ -113,8 +113,6 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
 
-    detektPlugins(libs.detekt.formatting)
-
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockito.core)
