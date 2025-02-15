@@ -55,7 +55,8 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(innerPadding)
                     ) {
-                        if (!isConnected.value) { NetworkLoss() } else { NavigationStack(navController = navController) }
+                        if (!isConnected.value) NetworkLoss()
+                        else NavigationStack(navController = navController)
                     }
                 }
             }
