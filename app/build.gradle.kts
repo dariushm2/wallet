@@ -5,13 +5,14 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
     alias(libs.plugins.googleservices)
     alias(libs.plugins.appdistribution)
 }
+
+apply(from = file("${rootProject.rootDir}/dependencies/detekt/detekt.gradle"))
 
 android {
     namespace = "com.darius.wallet"
@@ -47,7 +48,6 @@ android {
                 .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
                 .forEach { output ->
                     val outputFileName = "wallet-${variant.versionName}-${variant.baseName}-$timestamp.apk"
-                    println("OutputFileName: $outputFileName")
                     output.outputFileName = outputFileName
                 }
         }
@@ -103,7 +103,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigationCompose)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)

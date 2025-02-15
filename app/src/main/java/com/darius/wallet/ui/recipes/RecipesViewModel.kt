@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
     private val recipesRepo: RecipesRepo,
-    dispatcher: CoroutineDispatcher
+    dispatcher: CoroutineDispatcher,
 ) : CoroutineScopeViewModel(dispatcher) {
 
     private val _recipes = MutableStateFlow<UiState>(UiState.Loading)

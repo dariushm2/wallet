@@ -7,7 +7,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.darius.wallet.ui.navigation.Screens
 
-
 fun NavGraphBuilder.recipesDestination(
     navController: NavHostController,
 ) {

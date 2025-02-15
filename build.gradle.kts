@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.googleservices) version libs.versions.googleservices apply false
     alias(libs.plugins.appdistribution) version libs.versions.appdistribution apply false
+    alias(libs.plugins.detekt) version libs.versions.detekt apply false
 }

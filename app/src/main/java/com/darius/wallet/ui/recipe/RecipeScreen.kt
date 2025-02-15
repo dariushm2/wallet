@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun RecipeScreen(
     recipe: String?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
