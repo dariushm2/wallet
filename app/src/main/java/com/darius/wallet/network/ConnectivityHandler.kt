@@ -3,13 +3,13 @@ package com.darius.wallet.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
-import android.util.Log
 import com.darius.wallet.ext.asType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class ConnectivityHandler @Inject constructor(
@@ -34,7 +34,7 @@ class ConnectivityHandler @Inject constructor(
                 CoroutineScope(Dispatchers.Default).launch {
                     _isConnected.emit(true)
                 }
-                Log.e("network", "available")
+                Timber.e("Network", "Available")
             }
 
             override fun onLost(network: Network) {
@@ -42,7 +42,7 @@ class ConnectivityHandler @Inject constructor(
                 CoroutineScope(Dispatchers.Default).launch {
                     _isConnected.emit(false)
                 }
-                Log.e("network", "lost")
+                Timber.e("Network", "Lost")
             }
         })
     }
